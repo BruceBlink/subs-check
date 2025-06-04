@@ -198,8 +198,7 @@ go run main.go -f /path/to/config.yaml
 
 ## 通知渠道配置方法（可选）
 
-目前，此项目使用 [Apprise](https://github.com/caronc/apprise) 发送通知，并支持 100+ 个通知渠道。  
-但是 apprise 库是用 Python 编写的，Cloudflare 最近发布的 python worker 在部署 apprise 时仍然存在问题  
+目前，此项目使用 [Apprise](https://github.com/caronc/apprise) 发送通知，并支持 100+ 个通知渠道。但是 apprise 库是用 Python 编写的，Cloudflare 最近发布的 python worker 在部署 apprise 时仍然存在问题 
 所以我们下边提供两种部署方式的教程（当然实际不止两种）
 
 ### Vercel serverless 部署
