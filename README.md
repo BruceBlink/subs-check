@@ -34,7 +34,7 @@
 - 内置sub-store程序（默认监听 :8299）
   - 支持自定义PATH，支持订阅分享等等
 - 支持WEB页面控制，无需登录服务器
-  - 访问地址：http://127.0.0.1:8199/admin
+  - 访问地址：<http://127.0.0.1:8199/admin>
 - 支持crontab表达式运行
 
 ## 特点
@@ -47,24 +47,24 @@
 
 - [x] 适配多种订阅格式
 - [ ] 支持更多的保存方式
-    - [x] 本地
-    - [x] cloudflare r2
-    - [x] gist
-    - [x] webdav
-    - [x] http server
-    - [ ] 其他
+  - [x] 本地
+  - [x] cloudflare r2
+  - [x] gist
+  - [x] webdav
+  - [x] http server
+  - [ ] 其他
 - [x] 已知从clash格式转base64时vmess节点会丢失。因为太麻烦了，我不想处理了。
 - [x] 可能在某些平台、某些环境下长时间运行还是会有内存溢出的问题
-    - [x] 新增内存限制环境变量，用于限制内存使用，超出会自动重启（docker用户请使用docker的内存限制）
-      - [x] 环境变量 `SUB_CHECK_MEM_LIMIT=500M` `SUB_CHECK_MEM_LIMIT=1G`
-      - [x] 重启后的进程无法使用`ctrl c`退出，只能关闭终端
-    - [x] 彻底解决
+  - [x] 新增内存限制环境变量，用于限制内存使用，超出会自动重启（docker用户请使用docker的内存限制）
+    - [x] 环境变量 `SUB_CHECK_MEM_LIMIT=500M` `SUB_CHECK_MEM_LIMIT=1G`
+    - [x] 重启后的进程无法使用`ctrl c`退出，只能关闭终端
+  - [x] 彻底解决
 
 ## 部署/使用方式
 
 > **提示：** 如果拉取订阅速度慢，可使用通用的 `HTTP_PROXY` `HTTPS_PROXY` 环境变量加快速度；此变量不会影响节点测试速度
-
 > **代理格式说明：**
+>
 > - http 代理：`http://username:password@host:port`
 > - socks5代理：`socks5://username:password@host:port`
 > - socks5h代理：`socks5h://username:password@host:port`
@@ -111,6 +111,7 @@ https://custom-domain/raw/链接
 > **可将生成的链接添加到订阅链接当中一样可以实现此效果**
 
 ### 编辑配置文件（可选）
+>
 > 程序内置了部分订阅地址，不需要任何更改即可使用  
 程序运行第一次会在程序当前目录生成默认配置文件，再次运行即可起飞。
 
@@ -132,7 +133,6 @@ speed-test-url: https://custom-domain/speedtest?bytes=1073741824
 ### Docker运行
 
 > **注意：** 如果需要限制内存，请使用docker自带的内存限制参数 `--memory="500m"`
-
 > 可使用环境变量`API_KEY`直接设置Web控制面板的api-key
 
 ```bash
@@ -249,8 +249,8 @@ notify-title: "🔔 节点状态更新"
 
 > **注意：** 选择保存方法时，记得更改 `save-method` 配置  
 > 如果上边部署了 `worker.js`，下方使用即可，无需重复部署
-
 > **文件说明：** 现在会保存三个个文件：
+>
 > - `all.yaml`：仅包含节点
 > - `mihomo.yaml`：包含分流规则
 > - `base64.txt`：base64编码格式
@@ -277,6 +277,7 @@ notify-title: "🔔 节点状态更新"
 ### 推荐使用Sub-Store（非常推荐）
 
 > **配置说明：**
+>
 > - 假设你在配置文件中开启了此参数 `sub-store-port: 8299`
 > - sub-store默认监听ipv4/ipv6，所以你可以在任何设备上访问，在非本机访问需要填写正确的IP
 > - **注意：** 除非你知道你在干什么，否则不要将你的sub-store暴露到公网，否则可能会被滥用
@@ -315,22 +316,21 @@ http://127.0.0.1:8299/download/sub?target=Surfboard
 ```
 
 > **快速获取带规则的mihomo/clash订阅：**
+
 ```bash
 # mihomo 带规则的配置
 http://127.0.0.1:8299/api/file/mihomo
 ```
 
 > **高级说明：**
+>
 > - 这个依赖github上的yaml文件进行覆写  
 > - 默认内置: `https://raw.githubusercontent.com/beck-8/override-hub/refs/heads/main/yaml/ACL4SSR_Online_Full.yaml`  
 > - 如果遇到无法下载或者想使用其他格式，更改配置中的`mihomo-overwrite-url`即可
-
 > **与 `http://127.0.0.1:8199/mihomo.yaml` 的区别：**
 > 上方的是基于此链接download下来的文件，主要用于保存到 `local` `r2` `gist` `webdav` 使用，所以你使用哪个都可以。唯一的区别在于，**此链接会根据你配置的覆写URL，实时生成带分流规则的文件**。
-
 > **扩展功能：**
 > 如果你还有什么其他的需求，使用上方的通用订阅自己处理，或者学习 [sub-store](https://github.com/sub-store-org/sub-store-docs) 中的文件管理，可以写任意插件，功能真的很强大！！！
-
 > **访问说明：**
 > 当你打开 `http://127.0.0.1:8299`，你发现跳转到了 `https://sub-store.vercel.app/subs`，看 [**这里**](./doc/sub-store.md)
 
